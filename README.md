@@ -2,6 +2,13 @@
 
 A Jupyter/IPython extension to load custom matplotlibrcs to accompany Nikhil Sonnad's [style sheets][0] for [IPython Notebook][1], using Chris Kempson's [Base16][2] color scheme generator 
 
+## How It Works
+
+This adds a notebook extension that loads a custom matplotlibrc file. This inserts the values of various color schemes
+using named color dictionaries in the files in `base16-mplrc-themes/`.
+
+Installation and usage instructions are covered below.
+
 ## Screenshots
 
 ### Eighties Dark with Eighties Dark notebook
