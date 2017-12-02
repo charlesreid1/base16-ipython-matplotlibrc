@@ -1,34 +1,63 @@
-# Base 16 Inline Backend Themes for IPython Notebook
+# Base 16 Inline Backend Themes for Jupyter Notebook
 
-An ipython extension to load custom matplotlibrcs to accompany Nikhil Sonnad's [style sheets][0] for [IPython Notebook][1], using Chris Kempson's [Base16][2] color scheme generator 
-
-*There was a bug in IPython2.0 that resulted in the figure backgrounds always being white. If you experience this issue, pull the lastest version of IPython and it should be fixed*
+A Jupyter/IPython extension to load custom matplotlibrcs to accompany Nikhil Sonnad's [style sheets][0] for [IPython Notebook][1], using Chris Kempson's [Base16][2] color scheme generator 
 
 ## Screenshots
 
-####Eighties Dark with Eighties Dark notebook
+### Eighties Dark with Eighties Dark notebook
+
 ![sdsd](eighties_dark.png)
+
 ![sdsd](eighties_dark_cmaps.png)
 
-####Solarized Dark with Solarized Dark notebook
+### Solarized Dark with Solarized Dark notebook
+
 ![sdsd](solarized_dark.png)
+
 ![sdsd](solarized_dark_cmaps.png)
 
-####Default Light  with Solarized Dark notebook
+### Default Light  with Solarized Dark notebook
+
 ![sddl](sddl.png)
 
 
 
 ## Installation
 
-To use these color schemes, you'll install this extension in the extensions folder of your ipython. You can find where your ipython directory is, run
-`ipython locate`
+Start by finding your Jupyter data path:
 
-You can copy the contents of this directory into your `extensions` directory in your base ipython directory.
+```
+jupyter --paths
+```
+
+You will need to create a custom configuration for Jupyter. 
+(This is how Jupyter "does" profiles, now that IPython is 
+replaced with Jupyter and profiles have gone away.)
+
+You can either use the default directory, `~/.jupyter/`, 
+or you can set your own with an environment variable.
+
+```
+jupyter notebook --generate-config
+jupyter notebook 
+
+
+JUPYTER_CONFIG_DIR=~/jupyter_custom jupyter notebook --generate-config
+JUPYTER_CONFIG_DIR=~/jupyter_custom jupyter notebook
+```
+
+For now (not ideal), we put everything in the now-deprecated `~/.ipython/extensions/` directory.
 
 ```
 cp -r base16* ~/.ipython/extensions/.
 ```
+
+There are better ways to do this with Jupyter but the above mentioned `$JUPYTER_PATH` approach 
+does not work.
+
+
+
+## Use
 
 Once installed, this extension can be loaded as any other ipython extension
 
@@ -38,26 +67,21 @@ Using the `%load_ext` magic:
 In [1]: %load_ext base16_mplrc
 ```
 
-or by modifying  `ipython_notebook_config.py` in your profile directory
+or by modifying  `jupyter_notebook_config.py` in your profile directory
 
 ``c.InteractiveShellApp.extensions = [
     'base16_mplrc'
      ]``
 
-If you don't have a custom profile, run:
-
-`ipython profile create <profile-name>`
-
-To locate the directory of your profile, do:
-
-`ipython locate profile <profile-name>`
-
-
-once loaded, you can invoke it via line magic
-
 ```
 In [1]: %base16_mplrc <shade> <theme>
         %pylab inline
+```
+
+for example,
+
+```
+In [1]: %base16_mplrc dark bespin
 ```
 
 `shade` and `theme` are both optional positional arguments. If both are absent, then this extension
@@ -109,14 +133,18 @@ b16_colors.brbg registered as 'b16_brbg'
 ```
 
 ## Custom fonts
-You can set the default fonts by modifying your `ipython_notebook_config.py`:
+
+(??)
+
+You can set the default fonts by modifying your `jupyter_notebook_config.py`:
 
 ```
 c.InlineBackend.rc = {'font.family':'Inconsolata'}
 ```
+
 ## Credits
 
-* Uses Base16 builder by [Chris Kempson][3]. 
+* Uses Base16 builder by [Chris Kempson][3]. (TODO: update this)
 * Based off of base16-ipython-notebook by [Nikhil Sonnad][0]. 
 
 [0]: https://github.com/nsonnad/base16-ipython-notebook
